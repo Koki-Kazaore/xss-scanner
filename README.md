@@ -11,7 +11,13 @@
 ```bash
 bundle exec functions-framework-ruby --target hello_xss --port 8080
 
+# GET
 curl http://localhost:8080
+
+# POST
+curl -X POST http://localhost:8080 \
+  -H "Content-Type: application/json" \
+  -d '{"target_url": "{{TARGET_URL}}"}'
 ```
 
 ## Deploy and Test
