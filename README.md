@@ -17,7 +17,7 @@ curl http://localhost:8080
 # POST
 curl -X POST http://localhost:8080 \
   -H "Content-Type: application/json" \
-  -d '{"target_url": "{{TARGET_URL}}"}'
+  -d '{"target_url": "http://testphp.vulnweb.com/artists.php"}'
 ```
 
 ## Deploy and Test
@@ -27,15 +27,15 @@ curl -X POST http://localhost:8080 \
 gcloud auth login
 
 # Deploy
-gcloud functions deploy hello-xss \
+gcloud functions deploy xss-scanner \
   --runtime ruby33 \
   --trigger-http \
   --allow-unauthenticated \
-  --entry-point hello_xss \
+  --entry-point xss_scanner \
   --source .
 
 # Get function URL
-gcloud functions describe hello-xss --format="value(url)"
+gcloud functions describe xss-scanner --format="value(url)"
 ```
 ```bash
 # Test with curl
@@ -48,5 +48,5 @@ curl -X POST [FUNCTION_URL] \
 ```bash
 # Other commands
 gcloud functions list
-gcloud functions describe hello-xss
+gcloud functions describe xss-scanner
 ```

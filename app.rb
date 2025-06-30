@@ -6,7 +6,7 @@ require 'json'
 require 'uri'
 
 # Entry point for Cloud Function
-FunctionsFramework.http 'hello_xss' do |request|
+FunctionsFramework.http 'xss_scanner' do |request|
   begin
     case request.request_method
     when 'GET'
